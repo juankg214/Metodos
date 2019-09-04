@@ -1,25 +1,25 @@
 addpath(pwd);
  function [c] = bolzani(f, a, b, error, itermax)
   c = (a+b)/2
-  a1=a;
-  b1=b;
+  disp("Iteracion    a         b       c     f(a)      f(b)     f(c)")
   iter = 0;
   if f(a)*f(b) >= 0
     disp("No hay solucion")
   else
     while(abs(f(c)) > error)
-    iter = iter+1;
-    c = (a1+b1)/2;
+    c = (a+b)/2;
+    K = [iter a b c f(a) f(b) f(c)];
+    disp(k)
       if f(a)*f(c) < 0
-        b1 = c;
+        b = c;
        elseif f(b)*f(c) < 0
-        a1 = c;
+        a = c;
         end
       if iter >= itermax
         disp("failed")
         break
         end
-
+ iter = iter+1;
 endwhile
 end
 endfunction
