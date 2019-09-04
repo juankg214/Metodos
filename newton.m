@@ -1,11 +1,13 @@
-addpath(pwd)
-function findZero = newton(f,ff,a,iter)
-  aux = a;
+function deriv = fprima(x,funcion)
+  f = inline(funcion, "x");
+  epsilon = 10^-10;
+  deriv = (f(x+epsilon)-f(x))/epsilon
+endfunction
+
+function findZero = newton(funcion,a,iter)
+  findZero = a
+  f = inline(funcion, "x");
   for i=1:iter
-    findZero = a - (f(a)/ff(a));
-    a = findZero;
+    findZero = findZero - (f(findZero)/fprima(findZero,funcion));
   endfor
 endfunction
-f = @(x)cos(x)-x^3;
-ff = @(x)-sin(x)-3*x^2;
-newton(f,ff,0.5,10)
