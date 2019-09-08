@@ -26,6 +26,7 @@ function [c] = bolzano(fx, a, b, epsilon, itermax)
     z = arrayfun(f,x); # Se le aplica la funcion f(x) a cada valor del vector
     plot(x,z); #Se grafican los valores
     hold on; #Se va a agregar algo mas al plot
+    grid on; #add grid
     plot(c,f(c),"+r"); #Se grafica el punto c,f(c) de color red.
     
   end

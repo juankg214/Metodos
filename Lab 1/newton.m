@@ -22,6 +22,7 @@ function findZero = newton(funcion,a,itermax)
     y = arrayfun(f,x); # Se le aplica la funcion f(x) a cada valor del vector
     plot(x,y); #Se grafican los valores
     hold on; #Se va a agregar algo mas al plot
+    grid on; #add grid
     plot(findZero,f(findZero),"+r");#Se grafica el punto findZero,f(findZero) de color red.
 endfunction
 newton("1980*(1-exp(-x/10))-98*x",16,100)
