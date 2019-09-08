@@ -1,4 +1,9 @@
 function [c] = falsepos(fx, a, b, error, itermax)
+  #fx, Funcion objetivo
+  #a, Limite inferior
+  #b, Limite Superior
+  #error, error maximo, epsilon de la funcion 
+  #itermax, numero de iteraciones maximas.
   f = inline(fx,"x"); #define la funcion
   c = b - ((f(b)*(b-a))/(f(b)-f(a))); #calculamos el valor de c basados en la recta entre los puntos 
   K = []; #definimos el vector con las respuestas 

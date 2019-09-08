@@ -1,9 +1,3 @@
-function deriv = fprima(x,funcion)#Funcion Derivada, devuelve el valor de la derivada de la funcion evaluada en x
-  f = inline(funcion, "x"); # Se crea la funcion
-  epsilon = 10^-8;#Epsilon
-  deriv = (f(x+epsilon)-f(x))/epsilon#Definicion de derivada
-endfunction
-
 function findZero = newton(funcion,a,itermax)
   findZero = a #Se inicia con el punto inicial
   epsilon = 10^-10;#Valor de epsilon
@@ -25,4 +19,3 @@ function findZero = newton(funcion,a,itermax)
     grid on; #add grid
     plot(findZero,f(findZero),"+r");#Se grafica el punto findZero,f(findZero) de color red.
 endfunction
-newton("1980*(1-exp(-x/10))-98*x",16,100)
