@@ -8,7 +8,7 @@ function [c] = falsepos(fx, a, b, error, itermax)
   c = b - ((f(b)*(b-a))/(f(b)-f(a))); #calculamos el valor de c basados en la recta entre los puntos 
   K = []; #definimos el vector con las respuestas 
   iter = 0; #defnimos la variable iteradora 
-  if (f(a)*f(b) >= 0) disp("No hay solucion"); #evitamos utilizar la funcion en valores con el mismo signo
+  if (f(a)*f(b) > 0) disp("No hay solucion"); #evitamos utilizar la funcion en valores con el mismo signo
   else
     while(abs(f(c)) > error && iter < itermax)
       c = b - ((f(b)*(b-a))/(f(b)-f(a))); #calculamos el valor c
@@ -18,7 +18,7 @@ function [c] = falsepos(fx, a, b, error, itermax)
       iter = iter+1; #aumentamos en uno la iteracion
     endwhile
     #imprimimos la cabecera de los resultados
-    disp("    Iteracion      a           b            c         f(a)        f(b)         f(c)")
+    disp(" Iteracion      a        b         c       f(a)        f(b)       f(c)")
     #mostramos los resultados
     disp(K);
     #graficamos la solucion
