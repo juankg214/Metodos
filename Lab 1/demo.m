@@ -93,8 +93,8 @@ endfunction
 
 function sec = secante(fx,p0,p1,itermax)
   #fx, Funcion objetivo 
-  #p0, Limite menos cercano
-  #p1, Limite más cercano
+  #p0, aproximación inicial
+  #p1, aproximación final
   #itermax, numero de iteraciones maximas.
   f = inline(fx,"x"); #define la funcion
   fprintf('\n Interacciones \tp0     \t\tp1     \t\tp        \tf(p)\n');
@@ -104,7 +104,7 @@ function sec = secante(fx,p0,p1,itermax)
   q0 = f(p0);
   q1 = f(p1);
 
-  while(i<=itemax)
+  while(i<=itermax)
     %Interseccion en el eje X; Y = 0
 
     p=p1-q1*(p1-p0)/(q1-q0);
