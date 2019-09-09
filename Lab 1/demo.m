@@ -16,7 +16,7 @@ function [c] = bolzano(fx, a, b, itermax)
   else # Si no lo es
     while(abs(f(c)) > epsilon && iter < itermax)# Mientras el valor evualuado en la funcion sea mayor a epsilon, y no haya pasado el limite de iteraciones
       c = (a+b)/2; #Calcular el valor medio
-      K = vertcat(K,[iter a b c f(a) f(b) f(c)]); #A�adir nuevos valores al vector
+      K = vertcat(K,[iter a b c f(a) f(b) f(c)]); #Añadir nuevos valores al vector
         if (f(a)*f(c) < 0) b = c; #Si f(a) y f(c) tienen signos opuestos entonces c sera el nuevo limite inferior
         elseif (f(b)*f(c) < 0) a = c; end #Si f(b) y f(c) tienen signos opuestos entonces c sera el nuevo limite superior
       iter = iter+1; # Se suma el contador de iteraciones
@@ -77,7 +77,7 @@ function findZero = newton(funcion,a,itermax)
   K = [];
    while(abs(f(findZero)) > epsilon && iter < itermax)# Mientras el valor evualuado en la funcion sea mayor a epsilon, y no haya pasado el limite de iteraciones
     derivada = fprima(findZero,funcion);
-    K = vertcat(K,[iter findZero f(findZero) derivada]); #A�adir nuevos valores al vector
+    K = vertcat(K,[iter findZero f(findZero) derivada]); #Añadir nuevos valores al vector
     findZero = findZero - (f(findZero)/derivada);#El valor actual menos la division de la funcion evaluada en ese punto sobre la derivada
     iter = iter+1;#Se suma la iteracion
   endwhile
@@ -91,6 +91,46 @@ function findZero = newton(funcion,a,itermax)
     plot(findZero,f(findZero),"+r");#Se grafica el punto findZero,f(findZero) de color red.
 endfunction
 
+function sec = secante(fx,a,itermax)
+  #fx, Funcion objetivo 
+  #p0, Limite menos cercano
+  #p1, Limite más cercano
+  #itermax, numero de iteraciones maximas.
+  f = inline(fx,"x"); #define la funcion
+  fprintf('\n Interacciones \tp0     \t\tp1     \t\tp        \tf(p)\n');
+  fprintf('\t%d \t%6.6f \t%6.6f \n',1,p0,p1);
+
+  i=2;
+  q0 = f(p0);
+  q1 = f(p1);
+
+  while(i<=itemax)
+    %Interseccion en el eje X; Y = 0
+
+    p=p1-q1*(p1-p0)/(q1-q0);
+    fprintf('\t%d \t%6.6f \t%6.6f \t%6.6f \t%6.5f\n',i,p0,p1,p,f(p));
+    i++;
+
+    p0=p1;
+    q0=q1;
+    p1=p;
+    q1=f(p);
+    
+  endwhile
+
+  fprintf('\n');
+
+  %Graficar
+  up = p0-5; 
+  down= p1+5;
+  x = up:0.01:down; # Se crea un vector desde el limite inicial superior hasta el limite inicial inferior en pasos de 0.01
+  z = arrayfun(f,x); # Se le aplica la funcion f(x) a cada valor del vector
+  plot(x,z); #Se grafican los valores
+  hold on; #Se va a agregar algo mas al plot
+  plot(p,0,"+g"); #Se grafica el punto (p,0) de color verde.
+
+endfunction
+
 fprintf('\Laboratorio 1\n Integrantes: \n Juan Camilo Gomez \n Luis Eduardo Otalora \nSantiago Mahecha Pinzon');
 metodo = input('Ingrese el metodo numerico a usar: \n 0 = Metodo de Bolzano\n 1 = Metodo de Newton Rhapson\n 2 = Metodo de la secante\n 3 = Metodo de la posicion falsa')
 fun = input('ingrese la funcion f(x) = ','s');
@@ -99,11 +139,17 @@ if metodo == 0
   b = input("Ingrese b: ");
   itermax = input("Ingrese el numero maximo de iteraciones: ");
   bolzano(fun,a,b,itermax);
+  
 elseif metodo == 1
-   a = input("Ingrese a: ");
-   itermax = input("Ingrese el numero maximo de iteraciones: ");
-   newton(fun,a,itermax);
+  a = input("Ingrese a: ");
+  itermax = input("Ingrese el numero maximo de iteraciones: ");
+  newton(fun,a,itermax);
+  
 elseif metodo == 2
+  p0 = input('Ingrese la aproximación inicial: ');
+  p1 = input('Ingrese la aproximación final: ');
+  itermax = input('Ingrese el numero maximo de iteraciones: ');
+  secante(fun,p0,p1,itermax);
    
 elseif metodo == 3
   a = input("Ingrese a: ");
