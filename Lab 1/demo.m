@@ -101,14 +101,15 @@ function sec = secante(fx,p0,p1,itermax)
   fprintf('\t%d \t%6.6f \t%6.6f \n',1,p0,p1);
 
   i=2;
-  q0 = f(p0);
-  q1 = f(p1);
-
-  while(i<=itermax)
+  q0 = f(p0);#Guardamos la funcion evaluada en p0 (f(p0)) en q0
+  q1 = f(p1);#Guardamos la funcion evaluada en p1 (f(p1)) en q1
+  
+  while(i<=itemax)#Mientras que el numero de iteracciones sea menor al numero de iteracciones maximas:
+  
     %Interseccion en el eje X; Y = 0
-
-    p=p1-q1*(p1-p0)/(q1-q0);
-    fprintf('\t%d \t%6.6f \t%6.6f \t%6.6f \t%6.5f\n',i,p0,p1,p,f(p));
+    
+    p=p1-q1*(p1-p0)/(q1-q0);#Aplicamos la ecuacion predefinida para la formula de la secante con las distinta variables ya creadas (p0,p1,q0,q1)
+    fprintf('\t%d \t%6.6f \t%6.6f \t%6.6f \t%6.5f\n',i,p0,p1,p,f(p));#Creacion de lista
     i++;
 
     p0=p1;
