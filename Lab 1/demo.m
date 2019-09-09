@@ -105,7 +105,7 @@ elseif metodo == 1
    newton(fun,a,itermax);
 elseif metodo == 2
    
-elseif metodo == 30
+elseif metodo == 3
   a = input("Ingrese a: ");
   b = input("Ingrese b: ");
   itermax = input("Ingrese el numero maximo de iteraciones: ");
