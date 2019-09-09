@@ -91,7 +91,7 @@ function findZero = newton(funcion,a,itermax)
     plot(findZero,f(findZero),"+r");#Se grafica el punto findZero,f(findZero) de color red.
 endfunction
 
-function sec = secante(fx,a,itermax)
+function sec = secante(fx,p0,p1,itermax)
   #fx, Funcion objetivo 
   #p0, Limite menos cercano
   #p1, Limite más cercano
