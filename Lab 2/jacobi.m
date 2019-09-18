@@ -3,7 +3,8 @@ function c = jacobi(a,b,x)
   n = size(a)(1);
   x_aux = zeros(1,n);
    K = []; #Matriz que imprime.
-   K = vertcat(K, x);
+   printf("Current solution K = 0 : ");
+   disp(x);
   for count = 1:max_iter
 	  for i = 1:n
       aux1 = 0;
@@ -16,14 +17,14 @@ function c = jacobi(a,b,x)
         endif
 		  x_aux(i) = (b(i) - aux1 - aux2)/a(i,i);
     endfor
-  if difference(x,x_aux)
+  if difference_vectors(x,x_aux)
     break
    endif
   x = x_aux;
-  K = vertcat(K, x);
+  printf("Current solution K = %i", count);
+  disp(x);
   endfor
 c = x;
-disp(K)
 fprintf("Solucion");
 disp(x)
 endfunction
