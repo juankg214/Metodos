@@ -6,14 +6,14 @@ function c = jacobi(a,b,x)
    K = vertcat(K, x);
   for count = 1:max_iter
 	  for i = 1:n
-      aux1 = 0;
-      aux2 = 0;
-      if i != 1
+     		aux1 = 0;
+      		aux2 = 0;
+      		if i != 1
 		    aux1 = dot(a(i,1:i-1),x(1:i-1));
-       endif
-       if i != n
+       		endif
+       		if i != n
 		    aux2 = dot(a(i,i+1:end),x(i+1:end));
-        endif
+        	endif
 		  x_aux(i) = (b(i) - aux1 - aux2)/a(i,i);
     endfor
   if difference(x,x_aux)
