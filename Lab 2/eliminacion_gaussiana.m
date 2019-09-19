@@ -3,7 +3,7 @@ function c = eliminacion_gaussiana(a)
  
 n = size(a)(1);
 for i = 1:n
-	fila_pivote = zeros(n);
+	fila_pivote = zeros(1,n);
   counter = i;
   while fila_pivote(i) == 0
     if counter <= n
