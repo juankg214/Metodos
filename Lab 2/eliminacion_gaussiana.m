@@ -1,9 +1,9 @@
 addpath(pwd)
 function c = eliminacion_gaussiana(a)
- 
 n = size(a)(1);
+m = size(a)(2);
 for i = 1:n
-	fila_pivote = zeros(1,n);
+	fila_pivote = zeros(1,m);
   counter = i;
   
   while fila_pivote(i) == 0
@@ -26,5 +26,5 @@ for i = 1:n
 c = a;
 disp(a)
 endfunction
-a = [2,0,-1,1,0,2;4,1,-3,4,1,4;0,-1,2,-1,-3,-1;2,-1,0,0,0,0;-2,0,2,-2,-3,0;-2,0,-1,-3,-3,0];
+a = [6,-2,2,4,12;12,-8,6,10,34;,3,-13,9,3,27;-6,4,1,-18,-38];
 eliminacion_gaussiana(a);
