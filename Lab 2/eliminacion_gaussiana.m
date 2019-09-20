@@ -1,7 +1,8 @@
 addpath(pwd)
-function c = eliminacion_gaussiana(a)
+function [L,U] = eliminacion_gaussiana(a)
 n = size(a)(1);
 m = size(a)(2);
+b = eye(n,n);
 for i = 1:n
 	fila_pivote = zeros(1,m);
   counter = i;
@@ -18,13 +19,21 @@ for i = 1:n
   endwhile
 	for j = i+1:n
 		fila_a_transformar = a(j,1:end);
-		fila_pivote_transformada= fila_pivote.*(fila_a_transformar(i)/fila_pivote(i));
+    coef = (fila_a_transformar(i)/fila_pivote(i));
+		fila_pivote_transformada= fila_pivote.*coef;
 		aux = fila_a_transformar .- fila_pivote_transformada;
 		a(j,1:end) = aux;
+    b(j,i) = round(coef);
   endfor
  endfor
-c = a;
+U = a;
+L = b;
 disp(a)
+disp(b)
 endfunction
-a = [6,-2,2,4,12;12,-8,6,10,34;,3,-13,9,3,27;-6,4,1,-18,-38];
+
+function triangular = factorizar(L,U)
+  
+endfunction
+a = [1,2,3;-2,-3,6;4,1,3];
 eliminacion_gaussiana(a);
