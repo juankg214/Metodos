@@ -5,3 +5,14 @@ Ejercicios, talleres y laboratorios realizados por:
 * Luis Eduardo Otalora Cubides
 * Juan Camilo Gomez Lopez
 * Santiago Mahecha Pinzón
+
+**Laboratorio 1 (Raizes de ecuaciones Lineales)**
+* Metodo de Newton-Rhapson
+* Metodo Iterativo de Bolzano
+* Metodo de la Secante
+* Metodo de la posicion Falsa
+
+**Laboratorio 2 (Solucion de sistemas de ecuaciones Lineales**
+* Eliminacion Gaussiana
+* Metodo de Factorizacion Triangular
+* Metodo de Jacobi
