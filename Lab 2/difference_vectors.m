@@ -1,4 +1,3 @@
-addpath(pwd)
 function c = difference_vectors(x,y)
   n = size(x)(2);
   c = true;

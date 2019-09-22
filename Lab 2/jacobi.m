@@ -25,11 +25,11 @@ function c = jacobi(a,b,x)
   disp(x);
   endfor
 c = x;
-fprintf("Solucion");
-disp(x)
+printf("Solucion: \n");
+disp(x);
 endfunction
 
 a = [4,-1,1;4,-8,1;-2,1,5];
 b = [7,-21,15];
 x = [1,2,2];
-jacobi(a,b,x)
+jacobiMethod(a,b,x)

@@ -1,5 +1,4 @@
-addpath(pwd)
-function [L,U] = eliminacion_gaussiana(a)
+function [L,U] = Factorizacion_Triangular(a,bv)
 n = size(a)(1);
 m = size(a)(2);
 b = eye(n,n);
@@ -27,6 +26,13 @@ for i = 1:n
  endfor
 U = a;
 L = b;
+y = factorizarInferior(L,bv);
+x = factorizarSuperior(U,y);
+printf("Solucion: \n");
+for i = 1:n
+  printf("x%i = %i  ",i,x(i))
+endfor
+
 endfunction
 
 function y1 = factorizarInferior(L,b)
@@ -60,7 +66,5 @@ endfunction
 
 a = [1,4,-2;3,-2,5;2,3,1];
 b = [3,14,11];
-[L,U] = eliminacion_gaussiana(a);
-y = factorizarInferior(L,b);
-x = factorizarSuperior(U,y);
-disp(x);
+
+

@@ -1,3 +1,4 @@
+addpath(pwd)
 fprintf('Laboratorio 1\n Integrantes: \n Juan Camilo Gomez \n Luis Eduardo Otalora \nSantiago Mahecha Pinzon \n \n');
 fprintf('Ingrese el metodo numerico a usar: \n 0 = Metodo de Bolzano\n 1 = Metodo de Newton Rhapson\n 2 = Metodo de la secante\n 3 = Metodo de la posicion falsa \n')
 metodo = input("numero:")
