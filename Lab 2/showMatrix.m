@@ -1,4 +1,5 @@
 function m = showMatrix(a,b,n)
+  # recibe la martiz a el vector b y la dimension n
   printf("Sistema de Ecuaciones: \n")
   for i = 1:n
     for j = 1:n
