@@ -6,19 +6,12 @@ m = size(a)(2);
 b = eye(n,n);
 # recorremos las filas 
 for i = 1:n
-	fila_pivote = zeros(1,m);
+	fila_pivote = a(i,1:end);
   counter = i;
   
-  while fila_pivote(i) == 0
-   #creamos la filas pivote 
-    if counter <= n
-      fila_pivote = a(counter,1:end);  
-      aux_fila =  a(i,1:end);
-      a(i,1:end) = a(counter,1:end);
-      a(counter,1:end) = aux_fila;
-      counter += 1;
-    endif
-  endwhile
+  if fila_pivote(i) == 0
+    printf("Not worked\n");
+   endif
   #usamos las filas pivote para evaluar u hacer los calculos 
 	for j = i+1:n
     #hacemos los calculos para la nueva fila 
