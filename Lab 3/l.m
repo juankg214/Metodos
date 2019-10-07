@@ -25,12 +25,15 @@ function lagrange = lagrangeInterpolation(x,fun)
   disp(simplify(lagrange)); # We display lagrange interpolation function simplified
   xin = x(1)-1:0.001:x(end)+1; # The x-axis points we are going to display
   y = arrayfun(ff,xin); # we apply the function ff to every value in x, and we get the y-axis 
-  plot(xin,y);#We plot the x,y
+  plot(xin,y,"-k");#We plot the x,y
   hold on;#We are going to add more things to the plot
   grid on;#We add a grid
   for i = 1:size(x)(2)#for every value in the vector 
     plot(x(i),ff(x(i)),"+r");#We plot the point and its image.
   endfor
+  #Graphic original function 
+  y2 = arrayfun(f,xin);
+  plot(xin,y2,"-b")
 endfunction
 
  f=lagrangeInterpolation([0,0.4,0.8,1.2],"cos(x)");
