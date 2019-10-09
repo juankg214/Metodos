@@ -12,7 +12,11 @@ Ejercicios, talleres y laboratorios realizados por:
 * Metodo de la Secante
 * Metodo de la posicion Falsa
 
-**Laboratorio 2 (Solucion de sistemas de ecuaciones Lineales**
+**Laboratorio 2 (Solucion de sistemas de ecuaciones Lineales)**
 * Eliminacion Gaussiana
 * Metodo de Factorizacion Triangular
 * Metodo de Jacobi
+
+**Laboratorio 3 (Interpolación y aproximación polinomial)**
+* Interpolación de Lagrange
+* Polinomio interpolador de Newton
