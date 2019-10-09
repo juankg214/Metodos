@@ -1,22 +1,21 @@
 pkg load symbolic; # Load the package symbolic
 
-
 function cf = createpolinomyal(vector,puntosIniciales)
   warning('off', 'all'); # We turn off the warnings, because there are warnings about using double numbers with symbolic
   n = size(vector)(2); #Create vector size
   syms x; #Create x variable
   f =0;
   for i = 1:n
-    faux = vector(i);
+    faux = vector(i); # get the number from vector
     if(i == 1)
-      f += faux;
+      f += faux; # the first case, the number place alone 
     else
-       for j = 1:i-1
-          faux *= (x-puntosIniciales(j));
+       for j = 1:i-1 # other cases 
+          faux *= (x-puntosIniciales(j)); # create the numerator with x on symbolic and the vector from the matrix 
        endfor
-       faux = simplify(faux);
-       f += faux;
-       f = simplify(f);
+       faux = simplify(faux); # simplify the numerator
+       f += faux; #add the element to the polynomial
+       f = simplify(f); # simplify the polynomial
     endif
   endfor
   ff = function_handle(f);
