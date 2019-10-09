@@ -3,8 +3,8 @@ pkg load symbolic; # Load the package symbolic
 
 function cf = createpolinomyal(vector,puntosIniciales)
   warning('off', 'all'); # We turn off the warnings, because there are warnings about using double numbers with symbolic
-  n = size(vector)(2);
-  syms x;
+  n = size(vector)(2); #Create vector size
+  syms x; #Create x variable
   f =0;
   for i = 1:n
     faux = vector(i);
@@ -32,17 +32,17 @@ function cf = createpolinomyal(vector,puntosIniciales)
 endfunction
 
 function difft = difftable(x,fun)
-  n = size(x)(2);
-  f = inline(fun,"x");
-  matrix = zeros(n,n);
+  n = size(x)(2); #Create vector size
+  f = inline(fun,"x"); #Create function defined
+  matrix = zeros(n,n); #Diagonal matrix (0)
   for j = 1:n
-    matrix(j,1) = f(x(j));
+    matrix(j,1) = f(x(j)); #Vector points in (j,1:n) will take values of f(x(j))
   endfor
-  for j=2:n
-    for i=1:n-j+1
+  for j = 2:n
+    for i = 1:n-j+1
       #rintf("row %i column %i\n",i,j);
-      differenceIndex = x(i+j-1)-x(i);
-      differenceMatrix = matrix(i+1,j-1)-matrix(i,j-1);
+      differenceIndex = x(i+j-1)-x(i);#Make index difference
+      differenceMatrix = matrix(i+1,j-1)-matrix(i,j-1); 
       #sprintf("diff index = %i, diff matr = %i \n",differenceIndex,differenceMatrix)
       matrix(i,j) =  differenceMatrix/differenceIndex;
     endfor
