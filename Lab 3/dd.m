@@ -1,13 +1,6 @@
 pkg load symbolic; # Load the package symbolic
 
-function fk = factorial(k)
-  if(k==1 || k==0)
-    fk = 1;
-  endif
-  if(k>1)
-    fk = factorial(k-1)*k;
-  endif
-endfunction
+
 function cf = createpolinomyal(vector,puntosIniciales)
   warning('off', 'all'); # We turn off the warnings, because there are warnings about using double numbers with symbolic
   n = size(vector)(2);
@@ -37,6 +30,7 @@ function cf = createpolinomyal(vector,puntosIniciales)
     plot(puntosIniciales(i),ff(puntosIniciales(i)),"+r");#We plot the point and its image.
   endfor
 endfunction
+
 function difft = difftable(x,fun)
   n = size(x)(2);
   f = inline(fun,"x");
