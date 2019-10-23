@@ -20,3 +20,7 @@ Ejercicios, talleres y laboratorios realizados por:
 **Laboratorio 3 (Interpolación y aproximación polinomial)**
 * Interpolación de Lagrange
 * Polinomio interpolador de Newton
+
+**Laboratorio 4 (Ajuste de curvas)**
+* Mínimos cuadrados (Recta de regresión)
+* Mínimos cuadrados (Polinomio de grado M)
