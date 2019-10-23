@@ -9,7 +9,7 @@ function f=min_cua(t,y)
   x0 = M_i * A' * y';
   
   EQ = fopen("polynome.m","w");
-  fprintf(EQ,"p(x)=");
+  fprintf(EQ,"polynome=");
   printf("p(x)=");
 
 	for i = 1:(n+1)
