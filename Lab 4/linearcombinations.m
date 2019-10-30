@@ -20,8 +20,6 @@ function linearcombinations
     endfor
   endfor
   m = (f')*f;
-  b = (f')/ys;
-  disp(inv(m)*b);
-  #coefficients=Factorizacion_Triangular(m,b);
- 
+  b = (f')/ys;  
+  coefficients=Factorizacion_Triangular(m,b);
 endfunction

@@ -1,42 +1,41 @@
 function msd = minimunsqareddiff()
   points = recivepoints(); # get the points 
-  y=0;
-  x=0;
-  xy=0;
-  x2 =0;
-  n = size(points)(1);
-  xs=[];
-  ys=[];
+  y=0; # sumation of ys
+  x=0; # sumation of x
+  xy=0; # sumation of xy
+  x2 =0; # sumation of x^2
+  n = size(points)(1); #size of points
+  xs=[]; #x points
+  ys=[]; #y points
   #calculate the summation
   for i=1:size(points)(1)
-    y = y + points(i,2);
+    y = y + points(i,2); 
     x = x + points(i,1);
     x2 = x2 + (points(i,1)^2);
     xy = xy + points(i,2)*points(i,1);
     xs = [xs,points(i,1)];
     ys = [ys,points(i,2)];
   endfor
-  disp(xs)
   # create and solve the system
-  m = [x2,x;x,n];
-  b =[xy,y];
-  disp(m);
-  disp(b);
-  coefficients = Factorizacion_Triangular(m,b);
+  m = [x2,x;x,n]; #gauss m matrix
+  b =[xy,y]; #gauss b values
+  coefficients = Factorizacion_Triangular(m,b); #solve the system with triangular factorization
   #calculate the error
-  error=0;
+  error=0; #error start at 0
   for i=1:size(points)(1)
-    fy = coefficients(1)*points(i,1) + coefficients(2);
-    error = error + (((points(i,2)-fy)^2)/n);
+    fy = coefficients(1)*points(i,1) + coefficients(2); #calculate the error of every point 
+    error = error + (((points(i,2)-fy)^2)/n); #sum the error
   endfor
   #print the answer
-  error = sqrt(error);
-  disp(strcat("error = ", mat2str(error)));
-  fun = cstrcat(mat2str(coefficients(1)),"*x +",mat2str(coefficients(2))); 
-  f= inline(fun,"x");
-  fxs = xs(1):0.1:xs(end);
-  fys = arrayfun(f,fxs);
-  plot(fxs,fys,"-b",xs,ys,"-r",xs,ys,"*g");
-  msd = fun;
+  error = sqrt(error); #sqare root of the error 
+  disp(strcat("error = ", mat2str(error))); #show the error 
+  fun = cstrcat(mat2str(coefficients(1)),"*x +",mat2str(coefficients(2)));  #create the funtion string
+  f= inline(fun,"x"); #create the function to make the plot
+  fxs = xs(1):0.1:xs(end); #calculate the x´s for the plot of the function
+  fys = arrayfun(f,fxs); #caluclate the y´s of the function
+  plot(fxs,fys,"-b",xs,ys,"-r",xs,ys,"*g"); #plot the function, the original line and the points
+  title("Diferencia de minimos cuadrados");
+  legend("Función final","Linea original","puntos originales","location","northwest");
+  msd = fun; #return the value of the function 
 endfunction
 
