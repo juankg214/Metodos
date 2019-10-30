@@ -1,4 +1,5 @@
 function msd = minimunsqareddiff()
+  warning('off', 'all'); # We turn off the warnings, because there are warnings about using double numbers with symbolic
   points = recivepoints(); # get the points 
   y=0; # sumation of ys
   x=0; # sumation of x
@@ -28,7 +29,7 @@ function msd = minimunsqareddiff()
   endfor
   #print the answer
   error = sqrt(error); #sqare root of the error 
-  disp(strcat("error = ", mat2str(error))); #show the error 
+  disp(strcat("error cuadratico medio = ", mat2str(error))); #show the error 
   fun = cstrcat(mat2str(coefficients(1)),"*x +",mat2str(coefficients(2)));  #create the funtion string
   f= inline(fun,"x"); #create the function to make the plot
   fxs = xs(1):0.1:xs(end); #calculate the x´s for the plot of the function
