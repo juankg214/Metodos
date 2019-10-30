@@ -20,7 +20,7 @@ function msd = minimunsqareddiff()
   # create and solve the system
   m = [x2,x;x,n]; #gauss m matrix
   b =[xy,y]; #gauss b values
-  coefficients = Factorizacion_Triangular(m,b); #solve the system with triangular factorization
+  coefficients = Factorizacion_Triangular_Vec(m,b); #solve the system with triangular factorization
   #calculate the error
   error=0; #error start at 0
   for i=1:size(points)(1)

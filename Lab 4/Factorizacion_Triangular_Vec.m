@@ -1,5 +1,5 @@
 #funcion para factorizacion triangular 
-function xvec = Factorizacion_Triangular(a,bv)
+function xvec = Factorizacion_Triangular_Vec(a,bv)
 #creamos e inicializamos las variables con las dimensiones adecuadas 
 n = size(a)(1);
 m = size(a)(2);
