@@ -4,7 +4,7 @@ function msd = minimunsqareddiff()
   y=0; # sumation of ys
   x=0; # sumation of x
   xy=0; # sumation of xy
-  x2 =0; # sumation of x^2
+  x2 =0; # sumation of x^2v
   n = size(points)(1); #size of points
   xs=[]; #x points
   ys=[]; #y points
@@ -37,6 +37,8 @@ function msd = minimunsqareddiff()
   plot(fxs,fys,"-b",xs,ys,"-r",xs,ys,"*g"); #plot the function, the original line and the points
   title("Diferencia de minimos cuadrados");
   legend("Función final","Linea original","puntos originales","location","northwest");
+  ylabel("eje y");
+  xlabel("eje x");
   msd = fun; #return the value of the function 
 endfunction
 
