@@ -1,4 +1,4 @@
-function f=trapecio
+function f=trapecio()
 
   fprintf('\t\tMétodo del trapecio\n');
   f=input('Ingrese la funcion f(x)=','s');
@@ -16,8 +16,6 @@ function f=trapecio
     s=h/2*(g(a+(i-1)*h)+g(a+(i)*h))+s;%trapeze formula
     
   endfor
-
-
     fprintf('El valor aproximado de la integral es: %10.15f\n\n',s);
 
 endfunction

@@ -11,21 +11,20 @@ function cf = createpolinomyal(vector,puntosIniciales,xp)
       f += faux; # the first case, the number place alone 
     else
       faux=0;
-      syms x; #Create x variable
-       for k = 1:i # other cases 
+       for k = 1:i # other cases sumation
           ele = 1;
-          for j = 1:i
+          for j = 1:i #producer
             if(j != k)
-              ele *= (x-puntosIniciales(j));
+              ele *= (x-puntosIniciales(j));# multiplay and add
             endif            
           endfor
-          #ele = simplify(ele); 
+          ele = simplify(ele); 
           faux += (ele); # create the numerator with x on symbolic and the vector from the matrix 
        endfor
        faux = vector(i)*faux;
-       #faux = simplify(faux); # simplify the numerator
+       faux = simplify(faux); # simplify the numerator
        f += faux; #add the element to the polynomial
-       #f = simplify(f); # simplify the polynomial
+       f = simplify(f); # simplify the polynomial
        disp(f)
     endif
   endfor  
@@ -64,18 +63,18 @@ endfunction
 
 
 function dd = Derivate(xp,n,h,fun)
-  vector=zeros(1,n);
-  vector(1,1) = xp;
+  vector=zeros(1,n);#create the initial vector
+  vector(1,1) = xp;#fist element
   for i=1:n-1
-     vector(1,(i+1)) = xp+(i*h);
+     vector(1,(i+1)) = xp+(i*h);#fill the vector
   endfor
-  difvector = difftable(vector,fun);
-  difvector = difvector(2:end);
-  disp(difvector);
-  disp(vector);
+  difvector = difftable(vector,fun);#get the difference value
+  difvector = difvector(2:end);#take from 2
+  disp(difvector);#show diferences vector
+  disp(vector); #show vector
   printf("---------------------- \n")
-  f = createpolinomyal(difvector,vector,xp);
-  disp(f(xp));
+  f = createpolinomyal(difvector,vector,xp); #get the polinomyal and the graph
+  disp(f(xp)); #get the value of the derivate on that point
 endfunction
 
 
