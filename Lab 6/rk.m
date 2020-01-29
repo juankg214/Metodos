@@ -24,7 +24,7 @@ function [x,y] = rk(f,g,h,xk,yk,a,b)
   disp(K);
   disp("**************************************");
   disp("");
-  printf("RESPUESTA: x = %f ; y = %f",xk,yk);
+  printf("RESPUESTA: x =  %.*f ; y =  %.*f",10,xk,10,yk);
   disp("");
 endfunction
 
