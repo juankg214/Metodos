@@ -20,17 +20,13 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
   for j = 1:m
     t(j)=tj;
     pv(j)=pvi(tj);
-    if(j!=m)
-      s = p(tj+h)-1;
-      a(j+1)= (-h./2).*s;
-    endif
     b(j) =  2 + h^2*q(tj);
     if(j!=m)
+      a(j+1)= (-h./2).*p(tj+h)-1;
       c(j) = (h/2)*p(tj)-1;
     else
       c(j)=0;
     endif
-    
     if(j==1)
       d(j) = -h^2*r(tj)+e0;
     elseif(j==m)
@@ -39,8 +35,8 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
       d(j) = -h^2*r(tj);
     endif
     tj += h;
-    
   endfor
+  disp(b)
   disp("Solution")
   x = TDMAsolver(a,b,c,d);
   x = horzcat(K',t',x',pv');
