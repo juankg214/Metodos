@@ -1,45 +1,70 @@
 function x = finitediff(p,q,r,alpha,beta,a,b,h)
-  pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)";
-  pvi = inline(pvi,"t");
-  p = inline(p,"t");
-  q = inline(q,"t");
-  r = inline(r,"t");
-  m = (b-a)/h;
-  t = 0;
-  a = [];
-  b = [];
-  c = [];
-  d = [];
-  pv = [];
-  t = [];
-  e0 = (h/2*p(1)+1)*alpha;
-  eN = (-h/2*p(m-1)+1)*beta;
+  pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)"; # objective function 
+  pvi = inline(pvi,"t"); #create the function objective object
+  p = inline(p,"t"); #create function p
+  q = inline(q,"t"); #create function q
+  r = inline(r,"t"); #create function r
+  m = (b-a)/h; #create the number of interval
+  tj = a+h; #first step
+  #lists and vectos of the matrix
+  a = []; # create subdiagonal
+  b = []; # main diagonal
+  c = []; # create supdiagonal
+  d = []; # vector final
+  pv = []; #value of the function
+  t = []; # actual number
+  #constans
+  e0 = (h/2*p(tj)+1)*alpha;
+  eN = (-h/2*p(m-h)+1)*beta;
   K = [1:m];
-  tj = h;
   a(1)=0;
+  #create the matrix
   for j = 1:m
+    #do the step
     t(j)=tj;
+    #original value
     pv(j)=pvi(tj);
+    #every element of main diagonal
     b(j) =  2 + h^2*q(tj);
+    #fisrt elements of the diagonal
     if(j!=m)
-      a(j+1)= (-h./2).*p(tj+h)-1;
+      a(j+1)= (-h/2)*p(tj+h)-1;
       c(j) = (h/2)*p(tj)-1;
     else
+      #last element
       c(j)=0;
     endif
+    #first element to the final vector
     if(j==1)
       d(j) = -h^2*r(tj)+e0;
+    #last element to the final vector
     elseif(j==m)
       d(j) = -h^2*r(tj)+eN;
+    #middle elements to the final vector      
     else
       d(j) = -h^2*r(tj);
     endif
+    #make a step
     tj += h;
   endfor
-  disp(b)
+  #print solution
   disp("Solution")
-  x = TDMAsolver(a,b,c,d);
-  x = horzcat(K',t',x',pv');
+  #solve the matrix
+  xs = TDMAsolver(a,b,c,d);
+  #print results
+  disp("        K          t          xs          pv         Error");
+  x = horzcat(K',t',xs',pv',abs(pv'-xs'));
+  #create the funtion to the graph
+  y = arrayfun(pvi,t); # we apply the function ff to every value in x, and we get the y-axis 
+  plot(t,xs,"-b",t,y,"-r");#We plot the x,y
+  hold on;#We are going to add more things to the plot
+  grid on;#We add a grid
+  #info of the graphic
+  title("Combinaciones lineales de minimos cuadrados"); #title
+  legend("Función Aproximada","Función Exacta"); #legends
+  #labels
+  ylabel("eje y"); 
+  xlabel("eje x");
 endfunction
 
 function x = TDMAsolver(a,b,c,d)
