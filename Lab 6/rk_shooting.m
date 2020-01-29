@@ -1,11 +1,10 @@
-function [u1v,u2v] = rk_shooting(p,q,r,u1,u2,h,a,b)
+function u = rk_shooting(p,q,r,u1,u2,h,a,b)
   p = inline(p,"t");
   q = inline(q,"t");
   r = inline(r,"t");
   m = (b-a)/h;
   t = a;
-  u1tem = [];
-  u2tem = [];
+  u = [];
   for i = 1:m
     k11 = h*u2;
     k12 = h*(p(t)*u2+q(t)*u1+r(t));
@@ -17,10 +16,8 @@ function [u1v,u2v] = rk_shooting(p,q,r,u1,u2,h,a,b)
     k42 = h*(p(t+h)*(u2+k32) + q(t+h)*(u1+k31) + r(t+h));
     u1 = u1 + 1/6*(k11+2*k21+2*k31+k41);
     u2 = u2 + 1/6*(k12+2*k22+2*k32+k42);
-    u1tem(i) = u1;
-    u2tem(i) = u2;
+    u(i) = u1;
+    vtemp(i) = u2;
     t+= h;
   endfor
-  u1v = u1tem;
-  u2v = u2tem;
 endfunction
