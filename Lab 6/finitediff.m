@@ -1,5 +1,4 @@
 function x = finitediff(p,q,r,alpha,beta,a,b,h)
-<<<<<<< HEAD
   pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)";
   pvi = inline(pvi,"t");
   p = inline(p,"t");
@@ -14,7 +13,6 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
   pv = [];
   t = [];
   e0 = (h/2*p(h)+1)*alpha;
-=======
   pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)"; # objective function 
   pvi = inline(pvi,"t"); #create the function objective object
   p = inline(p,"t"); #create function p
@@ -31,7 +29,6 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
   t = []; # actual number
   #constans
   e0 = (h/2*p(tj)+1)*alpha;
->>>>>>> ec99136d1d25c92b9d18f926c6bc378caa044d04
   eN = (-h/2*p(m-h)+1)*beta;
   K = [1:m];
   a(1)=0;
@@ -64,11 +61,8 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
     #make a step
     tj += h;
   endfor
-<<<<<<< HEAD
   disp(a)
-=======
   #print solution
->>>>>>> ec99136d1d25c92b9d18f926c6bc378caa044d04
   disp("Solution")
   #solve the matrix
   xs = TDMAsolver(a,b,c,d);
