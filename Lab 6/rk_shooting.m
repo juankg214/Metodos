@@ -1,9 +1,9 @@
-function rk_shooting(p,q,r,u1,u2,h,a,b)
+function u = rk_shooting(p,q,r,u1,u2,h,a,b)
   p = inline(p,"t");
   q = inline(q,"t");
   r = inline(r,"t");
   m = (b-a)/h;
-  t = 1;
+  t = a;
   u = [];
   for i = 1:m
     k11 = h*u2;
@@ -19,5 +19,4 @@ function rk_shooting(p,q,r,u1,u2,h,a,b)
     u(i) = u1;
     t+= h;
   endfor
-  disp(u);
 endfunction
