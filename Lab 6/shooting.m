@@ -4,13 +4,9 @@ function x= shooting(p,q,r,alpha,beta,a,b,h)
   #define the function 
   pvi = inline(pvi,"t");
   #apply runga kutta to the funtion u
-  u1= rk_shooting(p,q,r,1,0,h,a,b);
-  # define u fucntion
-  uf = inline(strcat(p,"+",q,"+",r),"t");
+  u1= rk_shooting(p,q,r,alpha,0,h,a,b);
   #apply runga kutta to the funtion v
-  v1 = rk_shooting(p,q,"0",0,1,h,a,b);
-  # define v fucntion
-  vf = inline(strcat(p,"+",q),"t");
+  v1 = rk_shooting(p,q,r,0,1,h,a,b);
   #number of intervals
   m = (b-a)/h;
   #vectors for the answer
@@ -19,7 +15,8 @@ function x= shooting(p,q,r,alpha,beta,a,b,h)
   w2 =[];
   k=[];
   tvec = [];
-  t =a;
+  error =[];
+  t =h;
   #contatan to calculate w
   const = ((beta - u1(m))/v1(m));
   for i=1:m
@@ -33,8 +30,8 @@ function x= shooting(p,q,r,alpha,beta,a,b,h)
     t=t+h;
   endfor
   #print the answer
-  disp("        K          u          v          w            pv         Error");
-  disp(horzcat([1:m]',u1',v1',w',pv',abs(pv'-w')))
+  disp("        K                      w               pv                  Error");
+  disp(horzcat([1:m]',w',pv',abs(pv'-w')))
   #create the funtion to the graph
   y = arrayfun(pvi,tvec); # we apply the function ff to every value in x, and we get the y-axis 
   plot(tvec,w,"-b",tvec,y,"-r");#We plot the x,y
@@ -46,7 +43,6 @@ function x= shooting(p,q,r,alpha,beta,a,b,h)
   #labels
   ylabel("eje y"); 
   xlabel("eje x");
- 
 endfunction
 #shooting("2*t/(1+t^2)","-2/(1+t^2)","1",1.25,-0.95,0,4,0.2) ejercicio
 #shooting("-2/t","2/t^2","sin(log(t))/t^2",1,2,1,2,0.1) la que vimos en el pdf

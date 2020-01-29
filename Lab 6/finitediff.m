@@ -1,23 +1,11 @@
 function x = finitediff(p,q,r,alpha,beta,a,b,h)
   pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)";
   pvi = inline(pvi,"t");
-  p = inline(p,"t");
-  q = inline(q,"t");
-  r = inline(r,"t");
-  m = (b-a)/h;
-  t = 0;
-  a = [];
-  b = [];
-  c = [];
-  d = [];
-  pv = [];
-  t = [];
-  e0 = (h/2*p(h)+1)*alpha;
-  pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)"; # objective function 
-  pvi = inline(pvi,"t"); #create the function objective object
   p = inline(p,"t"); #create function p
   q = inline(q,"t"); #create function q
   r = inline(r,"t"); #create function r
+  pvi = "1.25+0.486089652*t-2.25*t^2+2*t*atan(t)+1/2*(t^2-1)*log(1+t^2)"; # objective function 
+  pvi = inline(pvi,"t"); #create the function objective object
   m = (b-a)/h; #create the number of interval
   tj = a+h; #first step
   #lists and vectos of the matrix
@@ -61,7 +49,6 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
     #make a step
     tj += h;
   endfor
-  disp(a)
   #print solution
   disp("Solution")
   #solve the matrix
