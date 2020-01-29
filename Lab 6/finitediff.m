@@ -75,7 +75,7 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
   hold on;#We are going to add more things to the plot
   grid on;#We add a grid
   #info of the graphic
-  title("Combinaciones lineales de minimos cuadrados"); #title
+  title("Metodo de las diferencias finitas"); #title
   legend("Función Aproximada","Función Exacta"); #legends
   #labels
   ylabel("eje y"); 
