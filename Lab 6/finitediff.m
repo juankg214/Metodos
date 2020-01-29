@@ -14,18 +14,18 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
   t = [];
   e0 = (h/2*p(1)+1)*alpha;
   eN = (-h/2*p(m-1)+1)*beta;
-  K = [1:m-1];
+  K = [1:m];
   tj = h;
   a(1)=0;
-  for j = 1:m-1
+  for j = 1:m
     t(j)=tj;
     pv(j)=pvi(tj);
-    if(j!=m-1)
+    if(j!=m)
       s = p(tj+h)-1;
       a(j+1)= (-h./2).*s;
     endif
     b(j) =  2 + h^2*q(tj);
-    if(j!=m-1)
+    if(j!=m)
       c(j) = (h/2)*p(tj)-1;
     else
       c(j)=0;
@@ -33,7 +33,7 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
     
     if(j==1)
       d(j) = -h^2*r(tj)+e0;
-    elseif(j==m-1)
+    elseif(j==m)
       d(j) = -h^2*r(tj)+eN;
     else
       d(j) = -h^2*r(tj);
@@ -41,9 +41,7 @@ function x = finitediff(p,q,r,alpha,beta,a,b,h)
     tj += h;
     
   endfor
-  disp("Table")
-  disp("")
-  disp(horzcat(a',b',c',d'))
+  disp("Solution")
   x = TDMAsolver(a,b,c,d);
   x = horzcat(K',t',x',pv');
 endfunction
