@@ -1,4 +1,4 @@
-# Laboratorios de metodos numericos grupo 8 2019-2
+# Laboratorios de metodos numericos grupo 8 2019-2 (Si se van a copiar al menos cambien cosas) 
 
 Ejercicios, talleres y laboratorios realizados por:
 
